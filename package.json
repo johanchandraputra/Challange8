@@ -10,11 +10,21 @@
   "author": "yogisaputro",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
-    "pg": "^7.17.1",
+    "express": "^4.17.1",
+    "pg": "^8.2.2",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^5.21.3"
-  }
+    "sequelize": "^5.21.3",
+    "swagger-ui-express": "^4.2.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/yagnia/binar-challenge-chapter-8.git"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/yagnia/binar-challenge-chapter-8/issues"
+  },
+  "homepage": "https://gitlab.com/yagnia/binar-challenge-chapter-8#readme"
 }

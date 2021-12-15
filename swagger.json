@@ -1,0 +1,607 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Challange8-API-Swagger",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000"
+    }
+  ],
+  "paths": {
+    "/api/players": {
+      "get": {
+        "summary": "get all player",
+        "tags": [
+          "Players"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "examples": {
+                  "example-success-find-all-player": {
+                    "value": {
+                      "result": "success",
+                      "message": {
+                        "id": 0,
+                        "username": "string",
+                        "email": "user@example.com",
+                        "password": "pa$$word",
+                        "experience": 0,
+                        "lvl": 0
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "examples": {
+                  "example-failed-retriving-player": {
+                    "value": {
+                      "result": "FAILED",
+                      "message": "Some error occurred while retrieving players."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-api-players",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "username",
+            "description": "player user"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "email",
+            "description": "player email"
+          },
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "experience",
+            "description": "experience"
+          },
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "lvl",
+            "description": "level"
+          }
+        ]
+      },
+      "post": {
+        "summary": "Create new player",
+        "operationId": "post-api-players",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "examples": {
+                  "example-success": {
+                    "value": {
+                      "result": "success",
+                      "message": {
+                        "id": 0,
+                        "username": "string",
+                        "email": "user@example.com",
+                        "password": "pa$$word",
+                        "experience": 0,
+                        "lvl": 0
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "examples": {
+                  "example-field-cannot-empty": {
+                    "value": {
+                      "result": "failed",
+                      "message": "username or email or password field cannot be empty."
+                    }
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "examples": {
+                  "example-internal-server-error": {
+                    "value": {
+                      "result": "failed",
+                      "message": "Some error occurred while creating the Player."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Players"
+              },
+              "examples": {
+                "example-success": {
+                  "value": {
+                    "username": "string",
+                    "email": "user@example.com",
+                    "password": "pa$$word"
+                  }
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Message"
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "Create new player",
+        "parameters": [],
+        "tags": [
+          "Players"
+        ]
+      }
+    },
+    "/api/players/{id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "get player by id",
+        "tags": [
+          "Players"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "examples": {
+                  "example-success": {
+                    "value": {
+                      "result": "success",
+                      "message": {
+                        "id": 0,
+                        "username": "string",
+                        "email": "user@example.com",
+                        "password": "pa$$word",
+                        "experience": 0,
+                        "lvl": 0
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-api-players-id",
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "id",
+            "description": "player id"
+          }
+        ]
+      },
+      "delete": {
+        "summary": "delete player id",
+        "operationId": "delete-api-players-id",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "examples": {
+                  "example-success-delete": {
+                    "value": {
+                      "result": "success",
+                      "message": "Player was deleted successfully!"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "examples": {
+                  "example-error-player-id-not-found": {
+                    "value": {
+                      "result": "failed",
+                      "message": "Cannot delete Player with id=${id}. Maybe Player was not found!"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "examples": {
+                  "example-error-cannot-delete-player": {
+                    "value": {
+                      "result": "failed",
+                      "message": "Could not delete Player with id"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "id",
+            "description": "player id"
+          }
+        ],
+        "tags": [
+          "Players"
+        ]
+      },
+      "put": {
+        "summary": "update player by id",
+        "operationId": "put-api-players-id",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "examples": {
+                  "example-success-update-player-by-id": {
+                    "value": {
+                      "result": "string",
+                      "message": {
+                        "id": 0,
+                        "username": "string",
+                        "email": "user@example.com",
+                        "password": "pa$$word",
+                        "experience": 0,
+                        "lvl": 0
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "examples": {
+                  "example-error-cannot-update-player": {
+                    "value": {
+                      "result": "failed",
+                      "message": "Cannot update Player with id=${id}. Maybe Player was not found or req.body is empty!"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "examples": {
+                  "example-error-updating-player": {
+                    "value": {
+                      "result": "failed",
+                      "message": "Error updating Player with id"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "id",
+            "description": "player id"
+          }
+        ],
+        "tags": [
+          "Players"
+        ]
+      }
+    },
+    "/api/players/exp/{id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "post": {
+        "summary": "add player experience",
+        "operationId": "post-api-players-exp-id",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "examples": {
+                  "example-success-add-exp": {
+                    "value": {
+                      "result": "success",
+                      "message": "Player with id=${id} has more experience."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "examples": {
+                  "example-exp-field-cannot-empty": {
+                    "value": {
+                      "result": "failed",
+                      "message": "exp field cannot be empty."
+                    }
+                  },
+                  "example-error-cannot-update-player": {
+                    "value": {
+                      "result": "failed",
+                      "message": "Cannot update Player with id"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "examples": {
+                  "example-failed-adding-exp": {
+                    "value": {
+                      "result": "failed",
+                      "message": "Error updating Player exp with id"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "",
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "id",
+            "description": "player id"
+          }
+        ],
+        "tags": [
+          "Players"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Message": {
+        "title": "respond message",
+        "type": "object",
+        "x-examples": {
+          "example-message": {
+            "result": "string",
+            "message": "string"
+          },
+          "example-object": {
+            "result": "success",
+            "message": {
+              "id": 0,
+              "username": "string",
+              "password": "pa$$word",
+              "experience": 0,
+              "lvl": 0
+            }
+          },
+          "example-array": {
+            "result": "success",
+            "message": {
+              "id": 0,
+              "username": "string",
+              "email": "user@example.com",
+              "password": "pa$$word",
+              "experience": 0,
+              "lvl": 0
+            }
+          }
+        },
+        "description": "",
+        "x-internal": false,
+        "properties": {
+          "result": {
+            "type": "string"
+          },
+          "message": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/Players"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Players"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "Players": {
+        "title": "Players",
+        "type": "object",
+        "x-examples": {},
+        "description": "players model",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "format": "password"
+          },
+          "experience": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "lvl": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "username",
+          "email",
+          "password"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Players"
+    }
+  ]
+}
